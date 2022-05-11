@@ -1,0 +1,10 @@
+image: python3.10
+
+stages:
+  - test
+
+pytest:
+  stage: test
+  script:
+    - pip install pytest
+    - python3 -m pytest .
