@@ -8,8 +8,8 @@ class Block:
     time: datetime
     proof: int
 
-    def __init__(self, previous_bash: str, data: object):
-        self.previous_hash = previous_bash
+    def __init__(self, previous_hash: str, data: object):
+        self.previous_hash = previous_hash
         self.data = data
         self.time = datetime.now()
         self.proof = 0
