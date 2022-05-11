@@ -7,13 +7,15 @@ class Block:
     previous_hash: str
     time: datetime
     proof: int
+    complexity: int
 
-    def __init__(self, previous_hash: str, data: object, *, time = datetime.now()):
+    def __init__(self, previous_hash: str, data: object, complexity: int, *, time = datetime.now()):
         self.previous_hash = previous_hash
         self.data = data
         self.time = time
         self.proof = 0
         self.hash = self.sha256()
+        self.complexity = complexity
     
     def sha256(self):
         block = [
@@ -21,14 +23,15 @@ class Block:
             str(self.time), ';',
             str(self.data), ';',
             str(self.proof), ';',
+            str(self.complexity), ';',
         ]
         return sha256(''.join(block).encode('utf8')).hexdigest()
 
     def valid(self):
         return self.sha256() == self.hash
 
-    def mine(self, complexity):
-        prefix = '0' * complexity
+    def mine(self):
+        prefix = '0' * self.complexity
         while not self.hash.startswith(prefix):
             self.proof += 1
             self.hash = self.sha256()
@@ -41,6 +44,7 @@ class Block:
             'Time: ', str(self.time), '\n   ',
             'Data: ', str(self.data), '\n   ',
             'Prof: ', str(self.proof), '\n',
+            'Comp: ', str(self.complexity), '\n',
             '}',
         ]
         return ''.join(block)
