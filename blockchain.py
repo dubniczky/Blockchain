@@ -6,11 +6,11 @@ class Blockchain:
 
     def __init__(self, complexity):
         self.complexity = complexity
-        genesis = Block("", None)
+        genesis = Block("", None, complexity)
         self.blocks = [ genesis ]
 
     def add(self, data):
-        b = Block(self.blocks[-1].hash, data)
+        b = Block(self.blocks[-1].hash, data, self.complexity)
         b.mine(complexity=self.complexity)
         self.blocks.append( b )
 
