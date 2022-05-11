@@ -16,6 +16,6 @@ class Blockchain:
 
     def validate(self):
         for i in range(1, len(self.blocks)):
-            if (not self.blocks[i].isValid() or self.blocks[i-1].hash != self.blocks[i].previous_hash):
+            if (not self.blocks[i].valid(self.blocks[i-1])):
                 return False
         return True

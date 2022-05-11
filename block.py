@@ -1,5 +1,7 @@
+from __future__ import annotations
 from datetime import datetime
 from hashlib import sha256
+
 
 class Block:
     data: object
@@ -27,7 +29,9 @@ class Block:
         ]
         return sha256(''.join(block).encode('utf8')).hexdigest()
 
-    def valid(self):
+    def valid(self, previous: Block = None):
+        if previous != None and previous.hash != self.previous_hash:
+            return False
         return self.sha256() == self.hash and self.hash.startswith('0' * self.complexity)
 
     def mine(self):
