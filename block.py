@@ -8,10 +8,10 @@ class Block:
     time: datetime
     proof: int
 
-    def __init__(self, previous_hash: str, data: object):
+    def __init__(self, previous_hash: str, data: object, *, time = datetime.now()):
         self.previous_hash = previous_hash
         self.data = data
-        self.time = datetime.now()
+        self.time = time
         self.proof = 0
         self.hash = self.sha256()
     
@@ -24,7 +24,7 @@ class Block:
         ]
         return sha256(''.join(block).encode('utf8')).hexdigest()
 
-    def isValid(self):
+    def valid(self):
         return self.sha256() == self.hash
 
     def mine(self, complexity):
