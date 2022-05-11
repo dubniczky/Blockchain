@@ -42,13 +42,13 @@ class Block:
 
     def __str__(self):
         block = [
-            '{\n   ',
-            'Hash: ', str(self.hash), '\n   ',
-            'Prev: ', str(self.previous_hash), '\n   ',
-            'Time: ', str(self.time), '\n   ',
-            'Data: ', str(self.data), '\n   ',
-            'Prof: ', str(self.proof), '\n',
-            'Comp: ', str(self.complexity), '\n',
+            '{\n',
+            '   Hash: ', str(self.hash), '\n',
+            '   Prev: ', str(self.previous_hash), '\n',
+            '   Time: ', str(self.time), '\n',
+            '   Data: ', str(self.data), '\n',
+            '   Prof: ', str(self.proof), '\n',
+            '   Comp: ', str(self.complexity), '\n',
             '}',
         ]
         return ''.join(block)
