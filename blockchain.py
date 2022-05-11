@@ -19,3 +19,7 @@ class Blockchain:
             if (not self.blocks[i].valid(self.blocks[i-1])):
                 return False
         return True
+    
+    def print(self):
+        for i in range(len(self.blocks)):
+            print(self.blocks[i])
