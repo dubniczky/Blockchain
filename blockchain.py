@@ -11,7 +11,7 @@ class Blockchain:
 
     def add(self, data):
         b = Block(self.blocks[-1].hash, data, self.complexity)
-        b.mine(complexity=self.complexity)
+        b.mine()
         self.blocks.append( b )
 
     def validate(self):
