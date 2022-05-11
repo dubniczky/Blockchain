@@ -14,8 +14,8 @@ class Block:
         self.data = data
         self.time = time
         self.proof = 0
-        self.hash = self.sha256()
         self.complexity = complexity
+        self.hash = self.sha256()        
     
     def sha256(self):
         block = [
@@ -28,7 +28,7 @@ class Block:
         return sha256(''.join(block).encode('utf8')).hexdigest()
 
     def valid(self):
-        return self.sha256() == self.hash
+        return self.sha256() == self.hash and self.hash.startswith('0' * self.complexity)
 
     def mine(self):
         prefix = '0' * self.complexity
