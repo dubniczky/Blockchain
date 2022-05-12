@@ -6,6 +6,18 @@ A simple transactional blockchain implemented in python
 
 The blockchain consists of blocks represented by class objects. Each object has inherit values visible in the examples. Before mining a block, the hash of the previously mined block is added to the current block to establish the chain. Each block's hash has to start with a certain number of zero hex values in order to be considered valid. This is achieved through trial and error by iterating the proof variable.
 
+## Usage Example
+
+```python
+from blockchain import Blockchain
+
+bc = Blockchain(5) # Complexity
+bc.add({'from': 'user1', 'to': 'user2', 'amount': 122.85})
+bc.add({'from': 'user2', 'to': 'user1', 'amount': 4.99})
+print(bc.validate())
+bc.print()
+```
+
 ## Example Blockchain
 
 ```yml
