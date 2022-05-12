@@ -47,3 +47,11 @@ def test_blockchain_search(standard_chain):
     assert bc.search(h3).data == 2
     assert bc.search(h4).data == {'a': True}
     assert bc.search('---') == None
+
+def test_blockchain_add_multiple(standard_chain):
+    bc = standard_chain
+    bc.addMultiple([1, 2, 3])
+    
+    assert bc.blocks[-1].data == 3
+    assert bc.blocks[-2].data == 2
+    assert bc.blocks[-3].data == 1

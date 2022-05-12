@@ -14,6 +14,10 @@ class Blockchain:
         b.mine()
         self.blocks.append( b )
 
+    def addMultiple(self, items):
+        for item in items:
+            self.add(item)
+
     def validate(self):
         for i in range(1, len(self.blocks)):
             if (not self.blocks[i].valid(self.blocks[i-1])):
