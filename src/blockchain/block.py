@@ -17,8 +17,8 @@ class Block:
         self.time = time
         self.proof = 0
         self.complexity = complexity
-        self.hash = self.sha256()        
-    
+        self.hash = self.sha256()
+
     def sha256(self):
         block = [
             self.previous_hash, ';',
@@ -30,7 +30,7 @@ class Block:
         return sha256(''.join(block).encode('utf8')).hexdigest()
 
     def valid(self, previous: Block = None):
-        if previous != None and previous.hash != self.previous_hash:
+        if previous is not None and previous.hash != self.previous_hash:
             return False
         return self.sha256() == self.hash and self.hash.startswith('0' * self.complexity)
 
