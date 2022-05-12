@@ -1,39 +1,35 @@
-from datetime import datetime
-
+import pytest
 from blockchain import Blockchain
+
+@pytest.fixture(scope='module')
+def standard_chain():
+    bc = Blockchain(3)
+    bc.add(None)
+    bc.add("heyo")
+    bc.add(2)
+    bc.add({'a': True})
+    return bc
 
 def test_blockchain_empty():
     bc = Blockchain(2)
     assert bc.complexity == 2
     assert len(bc.blocks) == 1
 
-def test_blockchain_adding():
-    bc = Blockchain(2)
-    bc.add(None)
-    bc.add("heyo")
-    bc.add(2)
-    bc.add({'a': True})
+def test_blockchain_adding(standard_chain):
+    bc = standard_chain
 
     assert bc.blocks[1].data == None
     assert bc.blocks[2].data == "heyo"
     assert bc.blocks[3].data == 2
     assert bc.blocks[4].data == {'a': True}
 
-def test_blockchain_validity():
-    bc = Blockchain(2)
-    bc.add(None)
-    bc.add("heyo")
-    bc.add(2)
-    bc.add({'a': True})
+def test_blockchain_validity(standard_chain):
+    bc = standard_chain
 
     assert bc.validate()
 
-def test_blockchain_invalidity():
-    bc = Blockchain(2)
-    bc.add(None)
-    bc.add("heyo")
-    bc.add(2)
-    bc.add({'a': True})
+def test_blockchain_invalidity(standard_chain):
+    bc = standard_chain
 
     bc.blocks[1].data = '!'
 
@@ -41,12 +37,8 @@ def test_blockchain_invalidity():
 
     assert not bc.validate()
 
-def test_blockchain_search():
-    bc = Blockchain(2)
-    bc.add(None)
-    bc.add("heyo")
-    bc.add(2)
-    bc.add({'a': True})
+def test_blockchain_search(standard_chain):
+    bc = standard_chain
 
     h0 = bc.blocks[0].hash
     h3 = bc.blocks[3].hash
