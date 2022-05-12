@@ -8,10 +8,10 @@ pylint:
   stage: lint
   script:
     - pip install pylint
-    - python3 -m pylint .
+    - make lint
 
 pytest:
   stage: test
   script:
     - pip install pytest
-    - python3 -m pytest .
+    - make test
