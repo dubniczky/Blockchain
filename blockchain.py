@@ -19,6 +19,12 @@ class Blockchain:
             if (not self.blocks[i].valid(self.blocks[i-1])):
                 return False
         return True
+
+    def search(self, hash):
+        for b in self.blocks:
+            if (b.hash == hash):
+                return b
+        return None
     
     def print(self):
         for i in range(len(self.blocks)):
