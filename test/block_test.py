@@ -46,3 +46,9 @@ def test_block_validity(mined_blocks):
     b2.data = {'item': 13_555}
 
     assert not b2.valid()
+
+def test_block_str(mined_blocks):
+    b1, b2, b3 = mined_blocks
+
+    assert str(b1).startswith('{')
+    assert "13555" in str(b2)
