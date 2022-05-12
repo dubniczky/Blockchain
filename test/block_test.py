@@ -52,3 +52,13 @@ def test_block_str(mined_blocks):
 
     assert str(b1).startswith('{')
     assert "13555" in str(b2)
+
+def test_block_sha256(mined_blocks):
+    b1, b2, b3 = mined_blocks
+
+    h1 = b1.sha256()
+    h2 = b2.sha256()
+    h3 = b3.sha256()
+
+    assert len(h1) == 64
+    assert h1 != h2 != h3
