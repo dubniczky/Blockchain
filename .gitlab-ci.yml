@@ -1,7 +1,14 @@
 image: python:3.10
 
 stages:
+  - lint
   - test
+
+pylint:
+  stage: lint
+  script:
+    - pip install pylint
+    - python3 -m pylint .
 
 pytest:
   stage: test
