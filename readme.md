@@ -2,6 +2,8 @@
 
 A simple transactional blockchain implemented in python
 
+[[_TOC_]]
+
 ## Methodology
 
 The blockchain consists of blocks represented by class objects. Each object has inherit values visible in the examples. Before mining a block, the hash of the previously mined block is added to the current block to establish the chain. Each block's hash has to start with a certain number of zero hex values in order to be considered valid. This is achieved through trial and error by iterating the proof variable.
