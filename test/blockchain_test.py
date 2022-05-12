@@ -50,7 +50,7 @@ def test_blockchain_search(standard_chain):
 
 def test_blockchain_add_multiple(standard_chain):
     bc = standard_chain
-    bc.addMultiple([1, 2, 3])
+    bc.add_multiple([1, 2, 3])
     
     assert bc.blocks[-1].data == 3
     assert bc.blocks[-2].data == 2
